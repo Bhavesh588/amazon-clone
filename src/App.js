@@ -12,6 +12,7 @@ import { auth } from './firebase';
 import { useStateValue } from './Redux/StateProvider';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import ReactGa from 'react-ga'
 
 const promise = loadStripe('pk_test_51HQ8G6AKKub6FeRVwHkGeDvuTa6dSwE1esMggOrsrt8xQbJIEPiVjiBrNcKIVvyQT0TmkbakjrFeuOpAMNKsnAn100EDtjCkPa');
 
@@ -19,6 +20,8 @@ function App() {
   const [, dispatch] = useStateValue()
 
   useEffect(() => {
+    ReactGa.initialize('UA-161261812-1')
+    ReactGa.pageview('/')
     //Run once only
     auth.onAuthStateChanged(authUser => {
 
